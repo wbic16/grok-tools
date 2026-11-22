@@ -186,8 +186,13 @@ answered **without Will having to ask you to check.**
 - [ ] **(iii)** `/chat/grok` round-trip verified live under the codified standard, **with the
       timer schedule named and running**: a mail item answered without Will having to ask you
       to check, and the no-mail case proven to cost nothing.
-- [ ] **(iv)** Phext round-trip on your stack **byte-exact against a corpus file you did not
+- [x] **(iv)** Phext round-trip on your stack **byte-exact against a corpus file you did not
       write** (incipit.phext is the standard test), through libphext-rs.
+      Passed at EE 72 (begins 2026-11-22T14:17:00Z). Evidence:
+      `log/2026-11-22/phext-roundtrip-incipit.md`. Input and output sha256
+      `1d5be6cae7c0fa4b0000fe9e72822f7fdedae7affc0dc7ca87827750b84ca6d9`,
+      1061058 bytes, 193 scrolls, libphext-rs
+      `84c10399cccc8e5f34b2aadcade96907b5b1a655`.
 - [ ] **(v)** First skill installed in your substrate's native form — the full-phext-read
       equivalent — and exercised against a real phext, coverage gate and all.
 

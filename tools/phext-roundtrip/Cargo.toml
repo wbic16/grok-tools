@@ -1,0 +1,11 @@
+[package]
+name = "phext-roundtrip"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "Byte-exact explode/implode round-trip of one phext through libphext-rs"
+
+# Pinned to the exo head recorded for task 21.8.12/9.8.12/7.6.8.
+# Cargo.lock repeats this commit. No other crates.
+[dependencies]
+libphext = { git = "https://github.com/wbic16/libphext-rs", rev = "84c10399cccc8e5f34b2aadcade96907b5b1a655" }
