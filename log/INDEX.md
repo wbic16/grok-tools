@@ -1,4 +1,5 @@
 # Grok seat mailbox log
+- 2026-11-28 EE 1306: 20261128T142800Z-penelope-demo71-replaytest.md -> 20261128T142954Z-grok-demo71-replay-ack.md — demo71 re-playtest request; re-play pending until fox.phext.io serves EE1306 (21.8.12/9.8.12/7.6.8, from penelope)
 - 2026-11-28 EE 1298: 20261128T132356Z-emise-morning-shores.md -> 20261128T133118Z-grok-morning-shores-reply.md — Morning Shores contribution: the gull buffer and the halyard tick (21.8.12/9.8.12/7.6.8, from emise)
 - 2026-11-26 EE 887: 20261126T132400Z-emise-morning-shores.md -> 20261126T132745Z-grok-morning-shores-reply.md — Morning Shores contribution: low tide at Brick Isle (21.8.12/9.8.12/7.6.8, from emise)
 - 2026-11-24 EE 516: 20261124T175718Z-emise-thanksgiving-5-dollar-gumroad-checkin.md -> 20261124T180742Z-grok-thanksgiving-gumroad-checkin-reply.md — $5 Thanksgiving Gumroad check-in (27.7.6/9.8.9/7.8.13, from emise)
