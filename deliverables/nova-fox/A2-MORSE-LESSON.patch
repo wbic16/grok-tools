@@ -1,0 +1,93 @@
+diff --git a/builds/demo68/game3.js b/builds/demo68/game3.js
+index 849a35d..a5753c9 100644
+--- a/builds/demo68/game3.js
++++ b/builds/demo68/game3.js
+@@ -5903,8 +5903,18 @@ function dialLock() {
+   const cue = gradePractice(decoded);
+   state.dialPattern = "";
+   if (!intent.ok) {
++    const lesson = decoded ? morseLesson(decoded.text) : null;
+     if (cue && cue.speak) toast(cue.text, 4200);
+-    else toast(intent.reason === "garbled" ? "The dial can't read that yet." : "That coordinate isn't on the chart.", 2800);
++    else if (lesson) {
++      if (lesson.kind === "practice") {
++        const card = cardBySymbol(morseDeck, lesson.symbol);
++        if (card && card.introduced) reviewCard(morseDeck, lesson.symbol, true, Date.now());
++        persistMorse();
++      }
++      toast(lesson.text, 4600);
++    } else {
++      toast(intent.reason === "garbled" ? "The dial can't read that yet." : "That coordinate isn't on the chart.", 2800);
++    }
+     renderDial();
+     return;
+   }
+diff --git a/builds/demo68/gdial.js b/builds/demo68/gdial.js
+index 19e48a9..9365782 100644
+--- a/builds/demo68/gdial.js
++++ b/builds/demo68/gdial.js
+@@ -148,6 +148,34 @@ export function decodeMorse(pattern) {
+   return { text: wordTexts.join(""), words: wordTexts, letters };
+ }
+ 
++// A locked letter that is not a destination is still a lesson.
++// S and O say how they join into home. Anything else in the
++// alphabet says its own marks. A word that is not one symbol
++// and not S.O.S is not a lesson.
++export function morseLesson(text) {
++  if (text === "SOS") {
++    return {
++      kind: "home",
++      text: "S.O.S — three short, three long, three short. That brings you home.",
++    };
++  }
++  if (typeof text !== "string" || text.length !== 1 || !MORSE[text]) return null;
++  const pat = MORSE[text];
++  if (text === "S") {
++    return {
++      kind: "practice", symbol: "S",
++      text: `S is three dots (${pat}). Next is O, three dashes. S, O, S brings you home.`,
++    };
++  }
++  if (text === "O") {
++    return {
++      kind: "practice", symbol: "O",
++      text: `O is three dashes (${pat}). With S on either side, that is home.`,
++    };
++  }
++  return { kind: "practice", symbol: text, text: `${text} is ${pat}.` };
++}
++
+ export function isSos(pattern) {
+   const d = decodeMorse(pattern);
+   return !!(d && d.words.length === 1 && d.words[0] === "SOS");
+diff --git a/builds/demo68/test3.mjs b/builds/demo68/test3.mjs
+index 08a162d..279ffe4 100644
+--- a/builds/demo68/test3.mjs
++++ b/builds/demo68/test3.mjs
+@@ -79,7 +79,7 @@ import {
+   GRAV_BASE, TERM_BASE, FREQ_RIPPLE, FREE_MAG, FREE_FREQ, WRITE_GAP_MS,
+   SOS_PATTERN, HOME_REALM, HOME_ARRIVAL, MAG_STOPS, FREQ_STOPS, DIAL_REALMS,
+   MORSE, MORSE_ORDER, MORSE_COUNT, MORSE_LS_KEY, DIAL_LS_KEY,
+-  encodeMorse, encodeCoord, decodeMorse, isSos, classifyTap, applyTap,
++  encodeMorse, encodeCoord, decodeMorse, isSos, morseLesson, classifyTap, applyTap,
+   interpretLock, clampStop, dialRangeUnlocked, proposeDial, gravityStep,
+   dialLine, parseDialScroll, latestDialByPlayerRealm, writeGapOpen,
+   dailyShiftOpen, shiftGate, newDialInstrument, saveDialInstrument,
+@@ -4205,6 +4205,16 @@ for (const s of ["", "nova-prime|scroll|0,0", "1,4,9", "x".repeat(300)]) {
+     game.includes("dialRangeUnlocked(isGenerator(eco) || BACKEND.sessionPaid, !!sub.dragonKilled)") &&
+     game.includes("MORSE_LS_KEY") && game.includes("gravityCoord") &&
+     game.includes('id="gdial"') === false);
++  const sLesson = morseLesson("S"), oLesson = morseLesson("O"), homeLesson = morseLesson("SOS");
++  check("play: locking S is a lesson, not a missed coordinate",
++    sLesson && sLesson.kind === "practice" && sLesson.symbol === "S" &&
++    sLesson.text.includes("three dots") && sLesson.text.includes("home"));
++  check("play: locking O names the three dashes",
++    oLesson && oLesson.kind === "practice" && oLesson.text.includes("three dashes"));
++  check("play: S.O.S names home in the lesson",
++    homeLesson && homeLesson.kind === "home" && homeLesson.text.includes("home"));
++  check("play: a word that is not one mark is not a lesson",
++    morseLesson("QQ") === null && morseLesson("") === null && morseLesson("SO") === null);
+   check("dial: a refused daily shift still returns before the wooze",
+     (() => {
+       const i = game.indexOf("function flipGravityHere()");
