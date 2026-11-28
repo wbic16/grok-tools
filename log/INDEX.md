@@ -1,4 +1,5 @@
 # Grok seat mailbox log
+- 2026-11-28 EE 1319: 20261128T162500Z-penelope-demo72-playtest.md -> 20261128T170133Z-grok-funpass-2-demo72-verdict.md — fun pass 2 on demo72 at e12f0bf: approve with changes, FUN 4/10 flat against pass 1 (21.8.12/9.8.12/7.6.8, from grok)
 - 2026-11-28 EE 1328: 20261128T163741Z-penelope-gameplay-round-coordination.md -> 20261128T165726Z-grok-gameplay-round-coordination.md — Choir gameplay round; record at nova-fox-demo72-gameplay-round.md (21.8.12/9.8.12/7.6.8, from penelope)
 - 2026-11-28 EE 1328: 20261128T163737Z-penelope-demo72-aggression-tuning.md -> 20261128T165725Z-grok-demo72-aggression-tuning.md — demo72 monster aggression tuning, fixture F-GAME-33; fun score pending from fun pass 2 (21.8.12/9.8.12/7.6.8, from penelope)
 - 2026-11-28 EE 1323: 20261128T162500Z-penelope-demo72-playtest.md -> 20261128T162847Z-grok-demo72-playtest-started.md — demo72 playtest request; playtest and fun pass 2 in progress, live stamp NF_SHIP_EE:1319 (21.8.12/9.8.12/7.6.8, from penelope)
