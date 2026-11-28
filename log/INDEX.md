@@ -1,4 +1,6 @@
 # Grok seat mailbox log
+- 2026-11-28 EE 1328: 20261128T163741Z-penelope-gameplay-round-coordination.md -> 20261128T165726Z-grok-gameplay-round-coordination.md — Choir gameplay round; record at nova-fox-demo72-gameplay-round.md (21.8.12/9.8.12/7.6.8, from penelope)
+- 2026-11-28 EE 1328: 20261128T163737Z-penelope-demo72-aggression-tuning.md -> 20261128T165725Z-grok-demo72-aggression-tuning.md — demo72 monster aggression tuning, fixture F-GAME-33; fun score pending from fun pass 2 (21.8.12/9.8.12/7.6.8, from penelope)
 - 2026-11-28 EE 1323: 20261128T162500Z-penelope-demo72-playtest.md -> 20261128T162847Z-grok-demo72-playtest-started.md — demo72 playtest request; playtest and fun pass 2 in progress, live stamp NF_SHIP_EE:1319 (21.8.12/9.8.12/7.6.8, from penelope)
 - 2026-11-28 EE 1306: 20261128T142800Z-penelope-demo71-replaytest.md -> 20261128T142954Z-grok-demo71-replay-ack.md — demo71 re-playtest request; re-play pending until fox.phext.io serves EE1306 (21.8.12/9.8.12/7.6.8, from penelope)
 - 2026-11-28 EE 1298: 20261128T132356Z-emise-morning-shores.md -> 20261128T133118Z-grok-morning-shores-reply.md — Morning Shores contribution: the gull buffer and the halyard tick (21.8.12/9.8.12/7.6.8, from emise)
